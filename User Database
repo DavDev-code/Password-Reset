@@ -1,0 +1,301 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+public class App {
+    public static void main(String[] args) throws InterruptedException {
+        Scanner in=new Scanner(System.in);
+        Scanner input=new Scanner(System.in);
+        ArrayList<ArrayList<String>>
+        userdb=new ArrayList<>();
+        ArrayList<String> row1=new
+        ArrayList<>();
+        row1.add("Name");
+        row1.add("\tE-mail");
+        row1.add("\t\t\tAge");
+        ArrayList<String> row2=new
+        ArrayList<>();
+        row2.add("John");
+        row2.add("\tjohn@gmail.com");
+        row2.add("\t\t25");
+        ArrayList<String> row3=new
+        ArrayList<>();
+        row3.add("Jake");
+        row3.add("\tjake@yahoo.com");
+        row3.add("\t\t29");
+        ArrayList<String> row4=new
+        ArrayList<>();
+        row4.add("Jane");
+        row4.add("\tjane@hotmail.com");
+        row4.add("\t32");
+        ArrayList<String> row5=new
+        ArrayList<>();
+        row5.add("Angela");
+        row5.add("\tangela@gmail.com");
+        row5.add("\t36");
+        ArrayList<String> row6=new
+        ArrayList<>();
+        row6.add("David");
+        row6.add("\tdavid@yahoo.com");
+        row6.add("\t42");
+        userdb.add(row1);
+        userdb.add(row2);
+        userdb.add(row3);
+        userdb.add(row4);
+        userdb.add(row5);
+        userdb.add(row6);
+
+        String user_login="user1", pass="pass123", mail_recovery;
+        boolean login=true;
+        if (login==true){
+            System.out.println("Log in by entering your Username and Password");
+            System.out.print("Username: ");
+            String user_login_a=in.next();
+            System.out.print("Password: ");
+            String pass_a=in.next();
+            if (user_login_a.equals(user_login) && pass_a.equals(pass)){
+                System.out.println("You have successfully logged in!");
+                login=false;
+            } 
+            else{
+                for(int i=0;i<2;i++){ 
+                    System.out.println("Your credentials are incorrect. Try again.");
+                    System.out.print("Username: ");
+                    user_login_a=in.next();
+                    System.out.print("Password: ");
+                    pass_a = in.next();
+                    if(user_login_a.equals(user_login) && pass_a.equals(pass)){
+                        System.out.println("You have successfully logged in!");
+                        login=false;
+                        break;
+                    }
+                }
+            if(login==true){
+                System.out.println("You have exceeded the amount of login attempts. Enter your email address to recover your password.");
+                System.out.print("Email address: ");
+                mail_recovery = in.next();
+                System.out.println("An email has been sent to "+mail_recovery+". Follow the instructions to recover your password.");
+                System.out.println("Processing...");
+                Thread.sleep(1500);
+                System.out.println("Processing...");
+                Thread.sleep(1500);
+                System.out.println("Processing...");
+                Thread.sleep(1500);
+                System.out.print("Enter a new password: ");
+                String pass_b=in.next();
+                System.out.print("Confirm your new password: ");
+                String pass_c=in.next();
+                if (pass_b.equals(pass_c)){
+                    System.out.println("You have successfully changed your password.");
+                    System.exit(0);
+                } 
+                else{
+                    System.out.println("Password reset failed. The password doesn't match with your new password.");
+                    System.exit(0);
+                }
+            }
+        }
+    }
+        System.out.println("Welcome to the user database system. Please choose one of the following options by typing the corresponding number.Enter 0 to exit.");
+        System.out.println("1. Show all users in the database\n2. Create a new user.\n3. Search user by name\n4. Search user by e-mail.\n5. Upadate a user's info.\n6. Delete a user.\n");
+        int ch=in.nextInt();
+        switch(ch){
+            case 1:
+                for(ArrayList<String> row:userdb){
+                    for(String cell:row){
+                        System.out.print(cell+" ");
+                    }
+                    System.out.println();
+                }
+                break;
+            case 2:
+                System.out.print("Enter the name for the user.\nName: ");
+                String new_user_name=input.nextLine();
+                System.out.print("Enter their e-mail address.\nE-mail: ");
+                String new_user=in.next();
+                System.out.print("Enter their age.\nAge: ");
+                new_user=in.next();
+                System.out.println("The user "+new_user_name+" has been successefully created.");
+                break;
+            case 3:
+                System.out.print("Search Name: ");
+                String search_name=in.next();
+                while(!search_name.toLowerCase().equals("john") && !search_name.toLowerCase().equals("jake") && !search_name.toLowerCase().equals("jane") && !search_name.toLowerCase().equals("angela") && !search_name.toLowerCase().equals("david")){
+                    System.out.println("There is no user with that name in the database.");
+                    System.out.print("Search Name: ");
+                    search_name=in.next(); 
+                }
+                switch(search_name.toLowerCase()){
+                    case "john":
+                        System.out.println("Your search returned 1 result.");
+                        System.out.println("Name\tE-mail\t\t\tAge");
+                        int rowindex=1;
+                        printrow(userdb, rowindex);
+                        break;
+                    case "jake":
+                        System.out.println("Your search returned 1 result.");
+                        System.out.println("Name\tE-mail\t\t\tAge");
+                        rowindex=2;
+                        printrow(userdb, rowindex);
+                        break;
+                    case "jane":
+                        System.out.println("Your search returned 1 result.");
+                        System.out.println("Name\tE-mail\t\t\tAge");
+                        rowindex=3;
+                        printrow(userdb, rowindex);
+                        break;
+                    case "angela":
+                        System.out.println("Your search returned 1 result.");
+                        System.out.println("Name\tE-mail\t\t\tAge");
+                        rowindex=4;
+                        printrow(userdb, rowindex);
+                        break;
+                    case "david":
+                        System.out.println("Your search returned 1 result.");
+                        System.out.println("Name\tE-mail\t\t\tAge");
+                        rowindex=5;
+                        printrow(userdb, rowindex);
+                        break;
+                }
+                break;
+            case 4:
+                System.out.print("Search E-mail: ");
+                String search_mail=in.next();
+                switch(search_mail.toLowerCase()){
+                    case "john@gmail.com":
+                        System.out.println("Your search returned 1 result.");
+                        System.out.println("Name\tE-mail\t\t\tAge");
+                        int rowindex=1;
+                        printrow(userdb, rowindex);
+                        break;
+                    case "jake@yahoo.com":
+                        System.out.println("Your search returned 1 result.");
+                        System.out.println("Name\tE-mail\t\t\tAge");
+                        rowindex=2;
+                        printrow(userdb, rowindex);
+                        break;
+                    case "jane@hotmail.com":
+                        System.out.println("Your search returned 1 result.");
+                        System.out.println("Name\tE-mail\t\t\tAge");
+                        rowindex=3;
+                        printrow(userdb, rowindex);
+                        break;
+                    case "angela@gmail.com":
+                        System.out.println("Your search returned 1 result.");
+                        System.out.println("Name\tE-mail\t\t\tAge");
+                        rowindex=4;
+                        printrow(userdb, rowindex);
+                        break;
+                    case "david@yahoo.com":
+                        System.out.println("Your search returned 1 result.");
+                        System.out.println("Name\tE-mail\t\t\tAge");
+                        rowindex=5;
+                        printrow(userdb, rowindex);
+                        break;
+                    default:
+                        System.out.println("There is no user with that e-mail in the database.");
+                        break; 
+                }
+                break;
+            case 5:
+                for(ArrayList<String> row:userdb){
+                    for(String cell:row){
+                        System.out.print(cell+" ");
+                    }
+                    System.out.println();
+                }
+                System.out.print("\nUpdate a user's info by typing their name: ");
+                String update_user_i=in.next();
+                switch(update_user_i.toLowerCase()){
+                    case "john":
+                        System.out.print("Enter a new name for the user John.\nName: ");
+                        String update_user_name=input.nextLine();
+                        System.out.print("Enter a new e-mail address.\nE-mail: ");
+                        String update_user=in.next();
+                        System.out.print("Enter a new age.\nAge: ");
+                        update_user=in.next();
+                        System.out.println("The user info has been succefully updated.");
+                        break;
+                    case "jake":
+                        System.out.print("Enter a new name for the user Jake.\nName: ");
+                        update_user_name=input.nextLine();
+                        System.out.print("Enter a new e-mail address.\nE-mail: ");
+                        update_user =in.next();
+                        System.out.print("Enter a new age.\nAge: ");
+                        update_user=in.next();
+                        System.out.println("The user info has been succefully updated.");
+                        break;
+                    case "jane":
+                        System.out.print("Enter a new name for the user Jane.\nName: ");
+                        update_user_name=input.nextLine();
+                        System.out.print("Enter a new e-mail address.\nE-mail: ");
+                        update_user=in.next();
+                        System.out.print("Enter a new age.\nAge: ");
+                        update_user=in.next();
+                        System.out.println("The user info has been succefully updated.");
+                        break;
+                    case "angela":
+                        System.out.print("Enter a new name for the user Angela.\nName: ");
+                        update_user_name=input.nextLine();
+                        System.out.print("Enter a new e-mail address.\nE-mail: ");
+                        update_user=in.next();
+                        System.out.print("Enter a new age.\nAge: ");
+                        update_user=in.next();
+                        System.out.println("The user info has been succefully updated.");
+                        break;
+                    case "david":
+                        System.out.print("Enter a new name for the user David.\nName: ");
+                        update_user_name=input.nextLine();
+                        System.out.print("Enter a new e-mail address.\nE-mail: ");
+                        update_user=in.next();
+                        System.out.print("Enter a new age.\nAge: ");
+                        update_user=in.next();
+                        System.out.println("The user info has been succefully updated.");
+                        break;
+                    default:
+                    System.out.println("This user doesn't exist in the database.");
+                        break;    
+                }
+                break;
+            case 6:
+                for(ArrayList<String> row:userdb){
+                    for(String cell:row){
+                        System.out.print(cell+" ");
+                    }
+                    System.out.println();
+                }    
+                System.out.print("\nDelete a user by typing their name: ");
+                String delete_user=in.next();
+                while(!delete_user.toLowerCase().equals("john") && !delete_user.toLowerCase().equals("jake") && !delete_user.toLowerCase().equals("jane") && !delete_user.toLowerCase().equals("angela") && !delete_user.toLowerCase().equals("david")){
+                    System.out.println("This user doesn't exist in the database");
+                    delete_user=in.next();
+                }
+                String capitalized=delete_user.substring(0, 1).toUpperCase()+delete_user.substring(1);
+                System.out.println("Are you sure you want to delete the user "+capitalized+"? (Type the corresponding number)\n1.Yes\n2. No");
+                int del_ch=in.nextInt();
+                while(del_ch<1 || del_ch>2){
+                    System.out.println("That's not a valid choice");
+                    del_ch=in.nextInt();
+                }
+                if(del_ch==1){
+                    System.out.println("The user has been deleted.");
+                }
+                else if(del_ch==2){
+                    System.out.println("The user has not been deleted.");
+                }
+                break;
+            case 0:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("That's not a valid choice.");
+                break;               
+        }
+    }
+    public static void
+        printrow(ArrayList<ArrayList<String>>userdb, int rowindex){
+            ArrayList<String> row=userdb.get(rowindex);
+            for(String cell:row){
+                System.out.print(cell+" ");
+            }
+            System.out.println();
+        }
+}
